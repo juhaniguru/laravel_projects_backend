@@ -29,5 +29,26 @@ class Project extends Model
 			'task' => $task,
 			'saved' => $saved
 		];
+	}
+
+	public static function findMyProjects($user, $withProjects){
+
+		$projects = static::where('manager_id', $user->id);
+		if($withProjects == 1)
+		{
+			$projects = $projects->with('manager');
+		}
+
+		return $projects->get();
+	}
+
+	public static function findAll($withProjects){
+
+		if($withProjects == 1)
+		{
+			return static::with('manager')->get();
+		} else {
+			return static::all();
+		}
 	} 
 }

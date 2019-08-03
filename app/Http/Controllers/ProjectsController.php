@@ -14,15 +14,23 @@ class ProjectsController extends Controller
      */
     public function index(Request $request)
     {
-        $projects = [];
-        if($request->user()->role == 'admin' || $request->user()->role == 'manager')
+        
+        $user = $request->user();
+        $withManager = $request->query('with_manager');
+
+        if($user->role == 'manager')
         {
-            $projects = Project::all();
-        } else {
-            $projects = Project::where('manager_id', $request->user()->id);
+            $projects = Project::findMyProjects($user, $withManager);
+        } else if($user->role == 'admin')
+        {
+
+            $projects = Project::findAll($withManager);
         }
 
+
         return $projects;
+
+
     }
 
     /**
@@ -128,5 +136,23 @@ class ProjectsController extends Controller
         'description' => ['required']
        ]);
        return  $project->storeTask($request->user(), $attributes);
+    }
+
+    public function manager(Request $request, Project $project)
+    {
+        return $project->manager;
+    }
+
+    public function updateManager(Request $request, Project $project)
+    {
+        $attributes = $request->validate([
+            'manager_id' => 'required'
+        ]);
+
+        $project->manager_id = $attributes['manager_id'];
+
+        $project->save();
+
+        return $project;
     }
 }
