@@ -115,4 +115,18 @@ class ProjectsController extends Controller
     {
         //
     }
+
+    public function tasks(Project $project)
+    {
+        return $project->tasks;
+    }
+
+    public function storeTask(Request $request, Project $project)
+    {
+
+       $attributes = $request->validate([
+        'description' => ['required']
+       ]);
+       return  $project->storeTask($request->user(), $attributes);
+    }
 }
