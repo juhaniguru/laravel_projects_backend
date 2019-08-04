@@ -13,18 +13,18 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware(['cors','auth:api'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
 Route::middleware('auth:api')->post('/logout', 'UsersController@logout');
-Route::post('/login', 'UsersController@login');
+Route::post('/login', 'UsersController@login')->middleware('cors');
 Route::post('/register', 'Auth\RegisterController@register');
-Route::resource('/projects', 'ProjectsController')->middleware(['auth:api']);
-Route::get('/projects/{project}', 'ProjectsController@show')->middleware(['auth:api', 'checkifnotadminisowner']);
-Route::get('/projects/{project}/tasks', 'ProjectsController@tasks')->middleware(['auth:api', 'checkifnotadminisowner']);
+Route::resource('/projects', 'ProjectsController')->middleware(['cors','auth:api']);
+Route::get('/projects/{project}', 'ProjectsController@show')->middleware(['cors','auth:api', 'checkifnotadminisowner']);
+Route::get('/projects/{project}/tasks', 'ProjectsController@tasks')->middleware(['cors','auth:api', 'checkifnotadminisowner']);
 Route::get('/projects/{project}/manager', 'ProjectsController@manager')->middleware(['auth:api']);
 Route::patch('/projects/{project}/manager', 'ProjectsController@updateManager')->middleware(['auth:api', 'checkifadmin']);
-Route::post('/projects/{project}/tasks', 'ProjectsController@storeTask')->middleware(['auth:api', 'checkifnotadminisowner']);
-Route::patch('/projects/{project}/tasks/{task}', 'ProjectsController@updateTask')->middleware(['auth:api', 'checkifnotadminisowner']);
+Route::post('/projects/{project}/tasks', 'ProjectsController@storeTask')->middleware(['cors', 'auth:api', 'checkifnotadminisowner']);
+Route::patch('/projects/{project}/tasks/{task}', 'ProjectsController@updateTask')->middleware(['cors','auth:api', 'checkifnotadminisowner']);
 

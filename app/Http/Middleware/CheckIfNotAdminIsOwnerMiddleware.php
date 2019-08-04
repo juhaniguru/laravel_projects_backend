@@ -21,6 +21,9 @@ class CheckIfNotAdminIsOwnerMiddleware
                 {
                     return $next($request);
                 }
+            } else if($request->user()->role == 'admin')
+            {
+                return $next($request);
             }
 
             abort(403, 'Unauthorized'); 

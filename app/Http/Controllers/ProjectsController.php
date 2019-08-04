@@ -123,7 +123,13 @@ class ProjectsController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $destroyed = $project->delete();
+
+        return [
+            'destroyed' => $destroyed
+        ];
+
+
     }
 
     public function tasks(Project $project)
