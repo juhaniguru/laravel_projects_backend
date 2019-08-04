@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use App\Task;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ProjectsController extends Controller
 {
@@ -133,7 +135,7 @@ class ProjectsController extends Controller
     {
 
        $attributes = $request->validate([
-        'description' => ['required']
+        'description' => ['required', 'min:1']
        ]);
        return  $project->storeTask($request->user(), $attributes);
     }
@@ -154,5 +156,39 @@ class ProjectsController extends Controller
         $project->save();
 
         return $project;
+    }
+
+    public function updateTask(Request $request, Project $project, Task $task)
+    {
+        $attributes = [];
+
+        
+
+        if($request->has('description'))
+        {
+            $attributes['description'] = $request->validate([
+                'description' => 'min:1'
+            ])['description'];
+
+            $task->description = $attributes['description'];
+        }
+
+        if($request->has('done'))
+        {
+
+            $attributes['done'] = $request->validate([
+                'done' => 'boolean'
+            ])['done'];
+
+
+
+            $task->done = $attributes['done'];
+        }
+
+        $task->saveOrFail();
+
+        return $task;
+
+
     }
 }
