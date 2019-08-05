@@ -19,7 +19,7 @@ Route::middleware(['cors','auth:api'])->get('/user', function (Request $request)
 
 Route::middleware('auth:api')->post('/logout', 'UsersController@logout');
 Route::post('/login', 'UsersController@login')->middleware('cors');
-Route::post('/register', 'Auth\RegisterController@register');
+Route::post('/register', 'Auth\RegisterController@register')->middleware('cors');
 Route::resource('/projects', 'ProjectsController')->middleware(['cors','auth:api']);
 Route::get('/projects/{project}', 'ProjectsController@show')->middleware(['cors','auth:api', 'checkifnotadminisowner']);
 Route::get('/projects/{project}/tasks', 'ProjectsController@tasks')->middleware(['cors','auth:api', 'checkifnotadminisowner']);

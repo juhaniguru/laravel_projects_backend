@@ -112,7 +112,17 @@ class ProjectsController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $attributes = $request->validate([
+            'name' => 'required',
+            'description' => 'required'
+        ]);
+
+        $project->name = $attributes['name'];
+        $project->description = $attributes['description'];
+
+        $project->saveOrFail();
+
+        return $project;
     }
 
     /**
