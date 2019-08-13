@@ -17,7 +17,7 @@ Route::middleware(['cors','auth:api'])->get('/user', function (Request $request)
     return $request->user();
 });
 
-Route::middleware('auth:api')->post('/logout', 'UsersController@logout');
+Route::middleware('auth:api', 'cors')->post('/logout', 'UsersController@logout');
 Route::post('/login', 'UsersController@login')->middleware('cors');
 Route::post('/register', 'Auth\RegisterController@register')->middleware('cors');
 Route::resource('/projects', 'ProjectsController')->middleware(['cors','auth:api']);

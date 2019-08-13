@@ -153,7 +153,7 @@ class ProjectsController extends Controller
        $attributes = $request->validate([
         'description' => ['required', 'min:1']
        ]);
-       return  $project->storeTask($request->user(), $attributes);
+       return $project->storeTask($request->user(), $attributes);
     }
 
     public function manager(Request $request, Project $project)

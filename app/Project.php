@@ -23,6 +23,7 @@ class Project extends Model
 		$task->description = $attributes['description'];
 		$task->manager_id = $user->id;
 		$task->project_id = $this->id;
+		$task->done = 0;
 		$saved = $task->save();
 
 		return [
