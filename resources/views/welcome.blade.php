@@ -1,99 +1,182 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <title>Web 101 - Projects</title>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!--link rel="stylesheet" href="../projects.css"-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
-            .full-height {
-                height: 100vh;
-            }
+    <!-- Custom styles for this template -->
+    
+  </head>
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+  <body>
 
-            .position-ref {
-                position: relative;
-            }
+    <header id="navcontainer">
+     
+    </header>
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+    <main role="main">
 
-            .content {
-                text-align: center;
-            }
+      <div class="container">
+        
+          <h1>Routes</h1>
 
-            .title {
-                font-size: 84px;
-            }
+          <ul class="list-group">
+            <li class="list-group-item">
+              <h2>POST - api/login</h2>
+              <p>payload: {
+                "email": "esimerkki@esimerkki.com",
+                "password": "salasana"
+            }</p>
+            <p>respose: logged in user</p>
+            
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
+            
+            </li>
+            <li class="list-group-item">
+              <h2>POST - api/register</h2>
+              <p>payload: {
+                "name": "nimi",
+                "email": "esimerkki@esimerkki.com",
+                "password": "salasana"
+            }</p>
+            <p>respose: newly registered and logged in user</p>
+            
 
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+            
+            </li>
+            <li class="list-group-item">
+              <h2>POST - api/user</h2>
+              <p>payload: NONE</p>
+            <p>respose: logged in user</p>
+            
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
+            
+            </li>
+            <li class="list-group-item">
+              <h2>POST - api/logout</h2>
+              <p>payload: NONE</p>
+            <p>respose: status 200</p>
+            
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
+            
+            </li>
+            <li class="list-group-item">
+              <h2>GET - api/projects</h2>
+              <p>payload: NONE</p>
+            <p>respose: array of projects</p>
+            
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </body>
+            
+            </li>
+            <li class="list-group-item">
+              <h2>POST - api/projects</h2>
+              <p>payload: {"name": "nimi", "description": "kuvaus"}</p>
+            <p>respose: newly added project</p>
+            
+
+            
+            </li>
+            <li class="list-group-item">
+              <h2>PUT|PATCH - api/projects/{project}</h2>
+              <p>payload: {"name": "nimi", "description": "kuvaus"}</p>
+            <p>respose: newly updated project</p>
+            
+
+            
+            </li>
+            <li class="list-group-item">
+              <h2>DELETE - api/projects/{project}</h2>
+              <p>payload: NONE</p>
+            <p>respose: {
+              "destroyed" => true|false
+            }</p>
+            
+
+            
+            </li>
+            <li class="list-group-item">
+              <h2>GET - api/projects/{project}/manager</h2>
+              <p>payload: NONE</p>
+            <p>respose: manager of selected project</p>
+            
+
+            
+            </li>
+            <li class="list-group-item">
+              <h2>GET - api/projects/{project}/tasks</h2>
+              <p>payload: NONE</p>
+            <p>respose: list of tasks in selected project</p>
+            
+
+            
+            </li>
+            <li class="list-group-item">
+              <h2>POST - api/projects/{project}/tasks</h2>
+              <p>payload: {"name" : "nimi", "description": "kuvaus"}</p>
+            <p>respose: newly added task</p>
+            
+
+            
+            </li>
+            <li class="list-group-item">
+              <h2>PATCH - api/projects/{project}/tasks/{task}</h2>
+              <p>payload: {"name" : "nimi", "description": "kuvaus"}</p>
+            <p>respose: newly updated task</p>
+            
+
+            
+            </li>
+          </ul>
+
+      </div>
+
+    </main>
+
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-right">
+          <a href="#">Back to top</a>
+        </p>
+       
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script-->
+
+
+
+
+<script>
+
+
+  document.addEventListener('DOMContentLoaded', function(){
+
+    /*axios.get('/nav.html').then(function(nav) {
+          document.querySelector('#navcontainer').innerHTML = nav.data;
+        }).catch(function(navErr) {
+
+        })*/
+  })
+  
+</script>
+  </body>
 </html>
+
+
